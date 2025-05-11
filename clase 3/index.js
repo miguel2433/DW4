@@ -59,12 +59,12 @@ app.post('/datos', (req, res) => {
 
 
 app.delete('/datos/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const existe = datos.some(item => item.id === id); 
+    const parseId = parseInt(req.params.id);
+    const index = datos.findIndex(dato => dato.id === parseId);
 
-    if (existe) {
-        datos = datos.filter(item => item.id !== id); 
-        res.send({ mensaje: 'Elemento eliminado',  existe});
+    if (index !== -1) {
+        const eliminado = datos.splice(index, 1); 
+        res.send({ mensaje: 'Elemento eliminado', eliminado });
     } else {
         res.status(404).send({ mensaje: 'Dato no encontrado' });
     }
