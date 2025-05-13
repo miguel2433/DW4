@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApiConsume</title>
+</head>
+<body>
+    <h1>Datos del servidor</h1>
+    <ul id="datosList"></ul>
+    <script>
+        const ServerUrl = "http://localhost:8080/datos"
+
+        const contenedorList = document.getElementById('datosList') 
+
+        async function ObtenerDatos()  {
+            try{
+                const respuesta = await fetch(`${ServerUrl}`)
+                if(respuesta.ok){
+                    const datos = await respuesta.json()
+                    console.log(datos)
+
+                    datos.forEach((dato) =>{
+                        const listItem = document.createElement('li')
+                        listItem.textContent = `nombre:${dato.nombre} apellido:${dato.apellido} edad:${dato.edad} id:${dato.id}`
+                        contenedorList.appendChild(listItem)
+                    })
+                }
+                else{
+                    console.error('Error al obtener datos del servidor', respuesta.statusText)
+                }
+            }
+            catch(error){
+                console.error('Error en la solicitud', error)
+            }
+        }
+        ObtenerDatos()
+    </script>
+</body>
+</html>
