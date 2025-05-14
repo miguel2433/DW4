@@ -77,6 +77,9 @@ app.put('/productos/:id', async (req, res) => {
     const { id } = req.params;
     const { nombre, precio, descripcion } = req.body;
 
+    // Convertir undefined a null
+    const clean = (v) => v === undefined ? null : v;
+
     const updateQuery = `
         UPDATE productos
         SET 
@@ -87,7 +90,13 @@ app.put('/productos/:id', async (req, res) => {
     `;
 
     try {
-        const [result] = await connection.execute(updateQuery, [nombre, precio, descripcion, id]);
+        const [result] = await connection.execute(updateQuery, [
+            clean(nombre),
+            clean(precio),
+            clean(descripcion),
+            id
+        ]);
+
         return res.status(200).json({ message: 'Producto actualizado correctamente', result });
     } catch (error) {
         console.error('Error actualizando producto', error);
