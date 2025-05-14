@@ -40,13 +40,15 @@ DROP DATABASE IF EXISTS DW4Class4;
 CREATE DATABASE IF NOT EXISTS DW4Class4;
 ```
 
-## 💾 Paso 3: Instale los paquetes que utiliza este proyecto posicionandose en la ruta DW4/Clase4 y ejecutando este codigo en la terminal
+## 💾 Paso 3: Instalar Paquetes 
+para instalar los paquetes que utiliza este proyecto posicionese en la ruta DW4/clase4 y ejecutando este codigo en la terminal
 ```
     npm i
 ``` 
 
 
-## 💾 Paso 4: Ejecutar el proyecto en la terminal asegurate de estar en la ruta correcta
+## 💾 Paso 4: Ejecutar el proyecto 
+en la terminal asegurate de estar en la ruta correcta DW4/clase4 y ejecute el siguiente codigo en la terminal y puede hacer las pruebas en Postman
 
 ```
 node --watch index.js
