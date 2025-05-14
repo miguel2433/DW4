@@ -1,10 +1,10 @@
-# 📁 Proyecto Clase 4 – Conexión a MySQL
+# 📁 Proyecto Desafio 2 – Conexión a MySQL
 
 ## 🗂️ Estructura de carpetas
 
-Dentro de la carpeta `clase4`, creá la siguiente estructura:
+Dentro de la carpeta `Desafio2`, creá la siguiente estructura:
 ```
-clase4/
+Desafio2/
 └── local-fyle-system/
     └── db.js
 ```
@@ -41,14 +41,14 @@ CREATE DATABASE IF NOT EXISTS DW4Class4;
 ```
 
 ## 💾 Paso 3: Instalar Paquetes 
-para instalar los paquetes que utiliza este proyecto posicionese en la ruta DW4/clase4 y ejecutando este codigo en la terminal
+para instalar los paquetes que utiliza este proyecto posicionese en la ruta DW4/Desafio2 y ejecutando este codigo en la terminal
 ```
     npm i
 ``` 
 
 
 ## 💾 Paso 4: Ejecutar el proyecto 
-en la terminal asegurate de estar en la ruta correcta DW4/clase4 y ejecute el siguiente codigo en la terminal y puede hacer las pruebas en Postman
+en la terminal asegurate de estar en la ruta correcta DW4/Desafio2 y ejecute el siguiente codigo en la terminal y puede hacer las pruebas en Postman
 
 ```
 node --watch index.js
