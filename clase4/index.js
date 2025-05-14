@@ -8,16 +8,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: '*' }));
 
 app.get('/crear-tabla', async (req, res) => {
-    const CreateTableQuery = `
-        CREATE TABLE IF NOT EXISTS productos (
+    const dropTableQuery = `DROP TABLE IF EXISTS productos`;
+    const createTableQuery = `
+        CREATE TABLE productos (
             Id INT AUTO_INCREMENT PRIMARY KEY,
             Nombre VARCHAR(255) NOT NULL,
             Precio DECIMAL(10, 2) NOT NULL,
             Descripcion TEXT
         )
     `;
+
     try {
-        await connection.execute(CreateTableQuery);
+        await connection.execute(dropTableQuery);
+        await connection.execute(createTableQuery);
         console.log('Tabla creada exitosamente');
         return res.status(200).send({ message: 'Tabla creada exitosamente' });
     } catch (error) {
