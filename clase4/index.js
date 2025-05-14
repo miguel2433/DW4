@@ -75,21 +75,27 @@ app.post('/agregar-productos', async (req, res) => {
 
 app.put('/productos/:id', async (req, res) => {
     const { id } = req.params;
-    const { nombre, precio, descripcion } = req.body;
+    const { name, stock, description, price } = req.body;
+
     const updateQuery = `
         UPDATE productos
-        SET Nombre = ?, Precio = ?, Descripcion = ?
-        WHERE Id = ?
+        SET 
+            name = COALESCE(?, name),
+            stock = COALESCE(?, stock),
+            description = COALESCE(?, description),
+            price = COALESCE(?, price)
+        WHERE id = ?
     `;
+
     try {
-        const [result] = await connection.execute(updateQuery, [nombre, precio, descripcion, id]);
-        console.log('Producto actualizado');
+        const [result] = await connection.execute(updateQuery, [name, stock, description, price, id]);
         return res.status(200).json({ message: 'Producto actualizado correctamente', result });
     } catch (error) {
         console.error('Error actualizando producto', error);
-        return res.status(500).send({ message: 'Error al actualizar producto' });
+        return res.status(500).json({ message: 'Error al actualizar producto' });
     }
 });
+
 
 app.delete('/productos/:id', async (req, res) => {
     const { id } = req.params;
